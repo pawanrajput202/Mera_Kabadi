@@ -1,6 +1,9 @@
 (function () {
   "use strict";
 
+  // Replace with your actual Supabase Edge Function URL before production testing.
+  var FORM_ENDPOINT = "https://qodyofbkofuwxjvebpvj.supabase.co/functions/v1/database-access";
+
   document.addEventListener("DOMContentLoaded", function () {
     initNavigation();
     initSmoothScroll();
@@ -112,13 +115,74 @@
           return;
         }
 
-        setFeedback(
-          feedback,
-          "Thank you. Your query has been received. We will contact you shortly.",
-          "success"
-        );
+        if (FORM_ENDPOINT.indexOf("YOUR-PROJECT-REF") !== -1) {
+          setFeedback(
+            feedback,
+            "Form endpoint is not configured yet. Please update script.js with your Supabase function URL.",
+            "error"
+          );
+          return;
+        }
 
-        form.reset();
+        var submitButton = form.querySelector('button[type="submit"]');
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Submitting...";
+        }
+
+        var payload = {
+          fullName: fullName.value.trim(),
+          phoneNumber: phoneValue,
+          vehicleType: vehicleType.value.trim(),
+          vehicleBrand: vehicleBrand.value.trim(),
+          vehicleModel: vehicleModel.value.trim(),
+          pickupAddress: pickupAddress.value.trim(),
+          city: city.value.trim(),
+          pincode: pincodeValue,
+        };
+
+        fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        })
+          .then(function (response) {
+            return response.json().catch(function () {
+              return {};
+            }).then(function (data) {
+              return { ok: response.ok, data: data };
+            });
+          })
+          .then(function (result) {
+            if (!result.ok || !result.data || result.data.ok !== true) {
+              var message = (result.data && result.data.message) ||
+                "We could not submit your request right now. Please try again.";
+              setFeedback(feedback, message, "error");
+              return;
+            }
+
+            setFeedback(
+              feedback,
+              "Thank you. Your query has been received. We will contact you shortly.",
+              "success"
+            );
+            form.reset();
+          })
+          .catch(function () {
+            setFeedback(
+              feedback,
+              "Network error while submitting your request. Please try again.",
+              "error"
+            );
+          })
+          .finally(function () {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = "Submit";
+            }
+          });
       });
     });
   }
@@ -138,5 +202,6 @@
     feedbackElement.textContent = text;
     feedbackElement.classList.remove("error", "success");
     feedbackElement.classList.add(type);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 })();
