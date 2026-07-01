@@ -85,14 +85,6 @@
           <h2>Submit Vehicle Details</h2>
           <p>Share your details and our team will contact you shortly.</p>
 
-          <!--
-            Static website note:
-            This form currently uses front-end validation and a success message only.
-            You can later connect it to Formspree, Web3Forms, Netlify Forms,
-            Google Forms, or a custom backend/API.
-            For data safety, use HTTPS endpoints, input validation/sanitization,
-            and encrypted storage when backend is added.
-          -->
           <form class="contact-form js-contact-form">
             <p class="form-feedback" aria-live="polite"></p>
 
@@ -134,6 +126,12 @@
             <label for="pincode">Pincode *</label>
             <input id="pincode" name="pincode" type="text" inputmode="numeric" maxlength="6" required />
 
+            <div
+              class="cf-turnstile"
+              data-sitekey="0x4AAAAAADuDF8qJjnQUyNVY"
+              data-theme="light"
+            ></div>
+
             <button class="btn btn-accent" type="submit">Submit</button>
           </form>
         </aside>
@@ -172,5 +170,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
