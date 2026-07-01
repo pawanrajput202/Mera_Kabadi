@@ -72,6 +72,9 @@
         var vehicleBrand = form.querySelector('input[name="vehicleBrand"]');
         var vehicleModel = form.querySelector('input[name="vehicleModel"]');
         var pickupAddress = form.querySelector('textarea[name="pickupAddress"]');
+        var turnstileToken =
+          form.querySelector('[name="cf-turnstile-response"]') ||
+          document.querySelector('[name="cf-turnstile-response"]');
 
         var requiredFields = [
           fullName,
@@ -124,6 +127,11 @@
           return;
         }
 
+        if (!turnstileToken || !turnstileToken.value.trim()) {
+          setFeedback(feedback, "Please complete the security check and try again.", "error");
+          return;
+        }
+
         var submitButton = form.querySelector('button[type="submit"]');
         if (submitButton) {
           submitButton.disabled = true;
@@ -139,6 +147,7 @@
           pickupAddress: pickupAddress.value.trim(),
           city: city.value.trim(),
           pincode: pincodeValue,
+          turnstileToken: turnstileToken.value.trim(),
         };
 
         fetch(FORM_ENDPOINT, {
@@ -178,6 +187,10 @@
             );
           })
           .finally(function () {
+            if (window.turnstile && typeof window.turnstile.reset === "function") {
+              window.turnstile.reset();
+            }
+
             if (submitButton) {
               submitButton.disabled = false;
               submitButton.textContent = "Submit";
