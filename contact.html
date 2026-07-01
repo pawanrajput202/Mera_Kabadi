@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Mera Kabadi</title>
+  <meta
+    name="description"
+    content="Contact Mera Kabadi for vehicle scrapping support in Delhi NCR."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/logo.png" alt="Mera Kabadi logo" width="70" height="70" />
+        <span class="brand-text">Mera Kabadi</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a class="active" href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero section-dark small">
+      <div class="container reveal">
+        <p class="eyebrow">Contact Us</p>
+        <h1>Send Your Vehicle Scrapping Request and We Will Get Back Quickly</h1>
+        <p>
+          Use the form below to share your details for vehicle scrapping in Delhi NCR.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-light">
+      <div class="container contact-layout">
+        <div class="contact-info reveal">
+          <h2>Contact Information</h2>
+          <div class="info-grid">
+            <article class="card">
+              <h3>Address</h3>
+              <p>34B, Parvatiya Colony, Sohna Road, NIT, Faridabad - 121005</p>
+            </article>
+            <article class="card">
+              <h3>Phone</h3>
+              <p>+919999825188</p>
+            </article>
+            <article class="card">
+              <h3>Email</h3>
+              <p>support@merakabadi.com</p>
+            </article>
+            <article class="card">
+              <h3>Business Hours</h3>
+              <p>Mon - Sat: 9:00 AM - 7:00 PM</p>
+            </article>
+          </div>
+
+          <div class="map-placeholder" role="img" aria-label="Google Maps placeholder for business location">
+            <h3>Google Maps Placeholder</h3>
+            <p>Embed a Google Maps iframe here when your final business address is ready.</p>
+          </div>
+        </div>
+
+        <aside class="contact-form-wrap reveal delay-1">
+          <h2>Submit Vehicle Details</h2>
+          <p>Share your details and our team will contact you shortly.</p>
+
+          <!--
+            Static website note:
+            This form currently uses front-end validation and a success message only.
+            You can later connect it to Formspree, Web3Forms, Netlify Forms,
+            Google Forms, or a custom backend/API.
+            For data safety, use HTTPS endpoints, input validation/sanitization,
+            and encrypted storage when backend is added.
+          -->
+          <form class="contact-form js-contact-form">
+            <p class="form-feedback" aria-live="polite"></p>
+
+            <label for="full-name">Full Name *</label>
+            <input id="full-name" name="fullName" type="text" required />
+
+            <label for="phone-number">Phone Number *</label>
+            <input
+              id="phone-number"
+              name="phone"
+              type="tel"
+              inputmode="numeric"
+              pattern="(?:\+91[\-\s]?)?[6-9][0-9]{9}"
+              title="Enter a valid Indian phone number, for example 9876543210 or +919876543210"
+              required
+            />
+
+            <label for="vehicle-type">Vehicle Type *</label>
+            <input id="vehicle-type" name="vehicleType" type="text" placeholder="Car, Bike, Scooter" required />
+
+            <label for="vehicle-brand">Brand *</label>
+            <input id="vehicle-brand" name="vehicleBrand" type="text" placeholder="Maruti, Hyundai, Honda" required />
+
+            <label for="vehicle-model">Model *</label>
+            <input id="vehicle-model" name="vehicleModel" type="text" placeholder="Swift, i20, Activa" required />
+
+            <label for="pickup-address">Pickup Address *</label>
+            <textarea
+              id="pickup-address"
+              name="pickupAddress"
+              rows="4"
+              placeholder="Enter full pickup address for vehicle collection"
+              required
+            ></textarea>
+
+            <label for="city">City *</label>
+            <input id="city" name="city" type="text" required />
+
+            <label for="pincode">Pincode *</label>
+            <input id="pincode" name="pincode" type="text" inputmode="numeric" maxlength="6" required />
+
+            <button class="btn btn-accent" type="submit">Submit</button>
+          </form>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <section>
+        <h3>Mera Kabadi</h3>
+        <p>Trusted vehicle scrapping support for owners across Delhi NCR.</p>
+      </section>
+      <section>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </section>
+      <section>
+        <h4>Contact</h4>
+        <ul>
+          <li>Address: 34B, Parvatiya Colony, Sohna Road, NIT, Faridabad - 121005</li>
+          <li>Phone: +919999825188</li>
+          <li>Email: support@merakabadi.com</li>
+        </ul>
+      </section>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Mera Kabadi. All rights reserved.</p>
+      <p>Designed for vehicle scrapping and recycling services.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
